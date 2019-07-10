@@ -26,6 +26,7 @@ const commonRules = [
       ],
       plugins: [
         require.resolve('react-hot-loader/babel'),
+        '@babel/plugin-proposal-class-properties',
       ],
     },
   },
