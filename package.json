@@ -21,6 +21,7 @@
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
+    "build:client": "NODE_ENV=production webpack",
     "client": "webpack-dev-server",
     "start": "node index.js"
   },
