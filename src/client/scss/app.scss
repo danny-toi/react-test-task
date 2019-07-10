@@ -1,1 +1,11 @@
 @import "bootstrap/bootstrap";
+
+.threadhold-input-container {
+  margin-top: $padding-large-horizontal;
+  margin-bottom: $padding-large-horizontal;
+
+  .form-control,
+  .btn {
+    margin-left: $padding-large-horizontal;
+  }
+}

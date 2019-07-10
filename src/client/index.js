@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
+import 'react-toastify/dist/ReactToastify.css'
 
 import store from './store'
 import App from './App'
