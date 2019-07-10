@@ -14,7 +14,7 @@ You should implement the next:
     - if the random number received from the server is greater than the threshold - show an alert toast / snackbar with the number as the payload
 4. Design: we appreciate your own design decisions =)
 
-Charts should be updated in real time. **Please**, consider code style best practices. 
+Charts should be updated in real time. **Please**, consider code style best practices.
 
 # Limitations
 
@@ -35,3 +35,16 @@ Charts should be updated in real time. **Please**, consider code style best prac
     - the payload format is `{ value: <float>, timestamp: <integer> }`
 
 # Good luck!
+
+# Notes on client app setup
+The client app uses following packages/modules:
+- redux: For state management, to store a list of random numbers and alert threshold.
+- webpack
+- babel
+- scss
+
+# How to start client app
+
+1. Add `/src/client/config.js` file (look at `config.js.example` file)
+2. Run `yarn client` / `npm run client`
+3. Now you can connect to the client app at `http://localhost:9001/`
