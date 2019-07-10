@@ -16,6 +16,7 @@ import { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } from '../constants'
 // Indicates how many numbers to be shown in chart.
 const CHART_CAPACITY = 10
 
+// Component to render line chart.
 class NumberChart extends Component {
   static propTypes = {
     numbers: PropTypes.array.isRequired,

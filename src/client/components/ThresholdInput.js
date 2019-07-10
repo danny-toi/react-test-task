@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+// Component to enter alert threshold.
 class ThresholdInput extends Component {
   static propTypes = {
     threadhold: PropTypes.number,

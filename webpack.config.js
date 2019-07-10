@@ -9,6 +9,7 @@ const env = process.env.NODE_ENV || 'development'
 const entryPath = path.resolve(__dirname, 'src/client/index.js')
 const distPath = path.resolve(__dirname, 'dist')
 
+// Rules applied to both development and production modes.
 const commonRules = [
   {
     test: /\.js$/,
@@ -32,6 +33,7 @@ const commonRules = [
   },
 ]
 
+// Plugins applied to both development and production modes.
 const commonPlugins = [
   new webpack.optimize.OccurrenceOrderPlugin(),
   new CleanWebpackPlugin(),

@@ -9,13 +9,13 @@ import {
   CartesianGrid,
   Bar,
 } from 'recharts'
-import moment from 'moment'
 
 import { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } from '../constants'
 
 // Number range size of categories.
 const CATEGORY_RANGE = 10
 
+// Component to render bar chart.
 class RangeChart extends Component {
   static propTypes = {
     numbers: PropTypes.array.isRequired,

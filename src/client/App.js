@@ -27,6 +27,7 @@ class App extends Component {
     super(props)
 
     this.handleData = this.handleData.bind(this)
+    this.handleSaveThreshold = this.handleSaveThreshold.bind(this)
   }
 
   componentDidMount() {
@@ -56,14 +57,22 @@ class App extends Component {
     }
   }
 
+  // Save alert threshold.
+  handleSaveThreshold(threshold) {
+    const { saveThreshold: saveThresholdProp } = this.props
+
+    saveThresholdProp(threshold)
+    toast('Alert threshold saved.')
+  }
+
   render() {
-    const { numbers, threshold, saveThreshold: saveThresholdProp } = this.props
+    const { numbers, threshold } = this.props
 
     return (
       <div className="container">
         <ThresholdInput
           threshold={threshold}
-          onSave={saveThresholdProp}
+          onSave={this.handleSaveThreshold}
         />
         <NumberChart
           numbers={numbers}

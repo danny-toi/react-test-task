@@ -22,6 +22,7 @@ const render = (Component) => {
 
 render(App)
 
+// Hot-reloading.
 if (module.hot) {
   module.hot.accept('./App', () => {
     render(App)
