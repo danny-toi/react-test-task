@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   ResponsiveContainer,
-  LineChart,
+  BarChart,
   XAxis,
   YAxis,
   Tooltip,
   CartesianGrid,
-  Line,
+  Bar,
 } from 'recharts'
 import moment from 'moment'
 
 import { MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER } from '../constants'
 
-// Indicates how many numbers to be shown in chart.
-const CHART_CAPACITY = 10
+// Number range size of categories.
+const CATEGORY_RANGE = 10
 
-class NumberChart extends Component {
+class RangeChart extends Component {
   static propTypes = {
     numbers: PropTypes.array.isRequired,
   }
@@ -28,28 +28,28 @@ class NumberChart extends Component {
   }
 
   xTickFormatter(x) {
-    return x ? moment(x).format('HH:mm:ss') : ''
+    return `${MIN_RANDOM_NUMBER + x * CATEGORY_RANGE} - ${MIN_RANDOM_NUMBER + x * CATEGORY_RANGE + CATEGORY_RANGE}`
   }
 
   parseData(numbers) {
     const parsed = []
 
-    if (numbers.length) {
-      // Prepare chart data with the recent 10 (CHART_CAPACITY) numbers.
-      const maxIndex = Math.min(CHART_CAPACITY, numbers.length)
-      for (let index = 0; index < maxIndex; index += 1) {
-        parsed.push(numbers[index])
-      }
+    const categoryCount = Math.ceil((MAX_RANDOM_NUMBER - MIN_RANDOM_NUMBER) / CATEGORY_RANGE)
+
+    const counter = []
+    for (let x = 0; x < categoryCount; x += 1) {
+      counter[x] = 0
     }
 
-    if (parsed.length < CHART_CAPACITY) {
-      const padding = CHART_CAPACITY - parsed.length
-      for (let index = 0; index < padding; index += 1) {
-        parsed.push({
-          value: 0,
-          timestamp: 0,
-        })
-      }
+    for (let index = 0; index < numbers.length; index += 1) {
+      counter[Math.floor((numbers[index].value - MIN_RANDOM_NUMBER) / CATEGORY_RANGE)] += 1
+    }
+
+    for (let x = 0; x < categoryCount; x += 1) {
+      parsed.push({
+        x,
+        y: counter[x],
+      })
     }
 
     return parsed
@@ -62,7 +62,7 @@ class NumberChart extends Component {
 
     return (
       <ResponsiveContainer aspect={4} width="100%" debounce={10}>
-        <LineChart
+        <BarChart
           data={chartData}
           margin={{
             top: 16,
@@ -72,27 +72,23 @@ class NumberChart extends Component {
           }}
         >
           <XAxis
-            dataKey="timestamp"
+            dataKey="x"
             minTickGap={20}
             tickFormatter={this.xTickFormatter}
           />
-          <YAxis
-            domain={[MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER]}
-          />
+          <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip
             labelFormatter={this.xTickFormatter}
           />
-          <Line
-            type="linear"
-            dataKey="value"
-            stroke="#70c0eb"
-            isAnimationActive={false}
+          <Bar
+            dataKey="y"
+            fill="#70c0eb"
           />
-        </LineChart>
+        </BarChart>
       </ResponsiveContainer>
     )
   }
 }
 
-export default NumberChart
+export default RangeChart

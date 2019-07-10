@@ -7,6 +7,7 @@ import { SOCKET_URL } from './config'
 import { receiveData } from './actions'
 
 import NumberChart from './components/NumberChart'
+import RangeChart from './components/RangeChart'
 
 class App extends Component {
   static propTypes = {
@@ -47,6 +48,9 @@ class App extends Component {
     return (
       <div className="container">
         <NumberChart
+          numbers={numbers}
+        />
+        <RangeChart
           numbers={numbers}
         />
       </div>
